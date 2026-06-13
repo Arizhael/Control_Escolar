@@ -1,0 +1,40 @@
+@model IEnumerable<ControlEscolarApp.Models.Calificacion>
+
+@{
+    ViewData["Title"] = "Resultado de Calificaciones";
+}
+
+<h1>Resultado de Calificaciones</h1>
+
+<p><strong>Alumno:</strong> @ViewBag.AlumnoNombre</p>
+<p><strong>Número de Boleta:</strong> @ViewBag.NumeroBoleta</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Materia</th>
+            <th>Grupo</th>
+            <th>Profesor</th>
+            <th>Parcial 1</th>
+            <th>Parcial 2</th>
+            <th>Parcial 3</th>
+            <th>Final</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var calificacion in Model)
+        {
+            <tr>
+                <td>@calificacion.Materia?.Nombre</td>
+                <td>@calificacion.Grupo?.Nombre</td>
+                <td>@calificacion.Profesor?.Nombre @calificacion.Profesor?.ApellidoPaterno</td>
+                <td>@calificacion.Parcial1</td>
+                <td>@calificacion.Parcial2</td>
+                <td>@calificacion.Parcial3</td>
+                <td>@calificacion.Final</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="BuscarAlumno" class="btn btn-secondary">Nueva búsqueda</a>

@@ -1,0 +1,45 @@
+@model IEnumerable<ControlEscolarApp.Models.AsignacionMateria>
+
+@{
+    ViewData["Title"] = "Asignaciones de Materia";
+}
+
+<h1>Asignaciones de Materia</h1>
+
+<p>
+    @if (Context.Session.GetString("Rol") == "Admin")
+    {
+        <a asp-action="Create" class="btn btn-primary">Nueva Asignación</a>
+    }
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Materia</th>
+            <th>Profesor</th>
+            <th>Grupo</th>
+            @if (Context.Session.GetString("Rol") == "Admin")
+            {
+                <th>Acciones</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var asignacion in Model)
+        {
+            <tr>
+                <td>@asignacion.Materia?.Nombre</td>
+                <td>@asignacion.Profesor?.Nombre @asignacion.Profesor?.ApellidoPaterno</td>
+                <td>@asignacion.Grupo?.Nombre</td>
+                <td>
+                    @if (Context.Session.GetString("Rol") == "Admin")
+                    {
+                        <a asp-action="Edit" asp-route-id="@asignacion.Id" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@asignacion.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

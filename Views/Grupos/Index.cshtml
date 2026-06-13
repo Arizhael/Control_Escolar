@@ -1,0 +1,43 @@
+@model IEnumerable<ControlEscolarApp.Models.Grupo>
+
+@{
+    ViewData["Title"] = "Grupos";
+}
+
+<h1>Grupos</h1>
+
+<p>
+    @if (Context.Session.GetString("Rol") == "Admin")
+    {
+        <a asp-action="Create" class="btn btn-primary">Nuevo Grupo</a>
+    }
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Semestre</th>
+            @if (Context.Session.GetString("Rol") == "Admin")
+            {
+                <th>Acciones</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var grupo in Model)
+        {
+            <tr>
+                <td>@grupo.Nombre</td>
+                <td>@grupo.Semestre</td>
+                <td>
+                    @if (Context.Session.GetString("Rol") == "Admin")
+                    {
+                        <a asp-action="Edit" asp-route-id="@grupo.Id" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@grupo.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

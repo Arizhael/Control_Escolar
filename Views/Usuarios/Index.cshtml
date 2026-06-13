@@ -1,0 +1,39 @@
+@model IEnumerable<ControlEscolarApp.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<h1>Usuarios</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo Usuario</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Rol</th>
+            <th>Alumno</th>
+            <th>Profesor</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.Username</td>
+                <td>@usuario.Rol</td>
+                <td>@(usuario.Alumno != null ? usuario.Alumno.NumeroBoleta + " - " + usuario.Alumno.Nombre : "-")</td>
+                <td>@(usuario.Profesor != null ? usuario.Profesor.Nombre + " " + usuario.Profesor.ApellidoPaterno : "-")
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@usuario.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@usuario.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

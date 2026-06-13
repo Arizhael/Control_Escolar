@@ -1,0 +1,50 @@
+@model ControlEscolarApp.Models.Alumno
+
+@{
+    ViewData["Title"] = "Editar Alumno";
+}
+
+<h1>Editar Alumno</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="NumeroBoleta" class="form-label"></label>
+        <input asp-for="NumeroBoleta" class="form-control" />
+        <span asp-validation-for="NumeroBoleta" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ApellidoPaterno" class="form-label"></label>
+        <input asp-for="ApellidoPaterno" class="form-control" />
+        <span asp-validation-for="ApellidoPaterno" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ApellidoMaterno" class="form-label"></label>
+        <input asp-for="ApellidoMaterno" class="form-control" />
+        <span asp-validation-for="ApellidoMaterno" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar cambios</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

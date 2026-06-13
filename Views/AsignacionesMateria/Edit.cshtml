@@ -1,0 +1,44 @@
+@model ControlEscolarApp.Models.AsignacionMateria
+
+@{
+    ViewData["Title"] = "Editar Asignación";
+}
+
+<h1>Editar Asignación</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="MateriaId" class="form-label"></label>
+        <select asp-for="MateriaId" class="form-control" asp-items="ViewBag.Materias">
+            <option value="">Seleccione una materia</option>
+        </select>
+        <span asp-validation-for="MateriaId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ProfesorId" class="form-label"></label>
+        <select asp-for="ProfesorId" class="form-control" asp-items="ViewBag.Profesores">
+            <option value="">Seleccione un profesor</option>
+        </select>
+        <span asp-validation-for="ProfesorId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GrupoId" class="form-label"></label>
+        <select asp-for="GrupoId" class="form-control" asp-items="ViewBag.Grupos">
+            <option value="">Seleccione un grupo</option>
+        </select>
+        <span asp-validation-for="GrupoId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar cambios</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

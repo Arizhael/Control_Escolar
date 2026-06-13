@@ -1,0 +1,30 @@
+@model ControlEscolarApp.Models.Profesor
+
+@{
+    ViewData["Title"] = "Eliminar Profesor";
+}
+
+<h1>Eliminar Profesor</h1>
+
+<h4>¿Seguro que deseas eliminar este profesor?</h4>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-3">Nombre</dt>
+    <dd class="col-sm-9">@Model.Nombre</dd>
+
+    <dt class="col-sm-3">Apellido Paterno</dt>
+    <dd class="col-sm-9">@Model.ApellidoPaterno</dd>
+
+    <dt class="col-sm-3">Apellido Materno</dt>
+    <dd class="col-sm-9">@Model.ApellidoMaterno</dd>
+
+    <dt class="col-sm-3">Email</dt>
+    <dd class="col-sm-9">@Model.Email</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

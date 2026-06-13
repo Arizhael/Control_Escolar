@@ -1,0 +1,45 @@
+@model ControlEscolarApp.Models.Usuario
+
+@{
+    ViewData["Title"] = "Crear Usuario";
+}
+
+<h1>Crear Usuario</h1>
+
+<div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="Username" class="form-label"></label>
+        <input asp-for="Username" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Rol" class="form-label"></label>
+        <select asp-for="Rol" class="form-control" asp-items="ViewBag.Roles">
+            <option value="">Seleccione un rol</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="AlumnoId" class="form-label"></label>
+        <select asp-for="AlumnoId" class="form-control" asp-items="ViewBag.Alumnos">
+            <option value="">Seleccione un alumno</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ProfesorId" class="form-label"></label>
+        <select asp-for="ProfesorId" class="form-control" asp-items="ViewBag.Profesores">
+            <option value="">Seleccione un profesor</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>

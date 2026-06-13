@@ -1,0 +1,47 @@
+@model IEnumerable<ControlEscolarApp.Models.Profesor>
+
+@{
+    ViewData["Title"] = "Profesores";
+}
+
+<h1>Profesores</h1>
+
+<p>
+    @if (Context.Session.GetString("Rol") == "Admin")
+    {
+        <a asp-action="Create" class="btn btn-primary">Nuevo Profesor</a>
+    }
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>Email</th>
+            @if (Context.Session.GetString("Rol") == "Admin")
+            {
+                <th>Acciones</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var profesor in Model)
+        {
+            <tr>
+                <td>@profesor.Nombre</td>
+                <td>@profesor.ApellidoPaterno</td>
+                <td>@profesor.ApellidoMaterno</td>
+                <td>@profesor.Email</td>
+                <td>
+                    @if (Context.Session.GetString("Rol") == "Admin")
+                    {
+                        <a asp-action="Edit" asp-route-id="@profesor.Id" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@profesor.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

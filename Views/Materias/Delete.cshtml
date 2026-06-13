@@ -1,0 +1,24 @@
+@model ControlEscolarApp.Models.Materia
+
+@{
+    ViewData["Title"] = "Eliminar Materia";
+}
+
+<h1>Eliminar Materia</h1>
+
+<h4>¿Seguro que deseas eliminar esta materia?</h4>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-3">Clave</dt>
+    <dd class="col-sm-9">@Model.Clave</dd>
+
+    <dt class="col-sm-3">Nombre</dt>
+    <dd class="col-sm-9">@Model.Nombre</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,27 @@
+@model ControlEscolarApp.Models.AsignacionMateria
+
+@{
+    ViewData["Title"] = "Eliminar Asignación";
+}
+
+<h1>Eliminar Asignación</h1>
+
+<h4>¿Seguro que deseas eliminar esta asignación?</h4>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-3">Materia</dt>
+    <dd class="col-sm-9">@Model.Materia?.Nombre</dd>
+
+    <dt class="col-sm-3">Profesor</dt>
+    <dd class="col-sm-9">@Model.Profesor?.Nombre @Model.Profesor?.ApellidoPaterno</dd>
+
+    <dt class="col-sm-3">Grupo</dt>
+    <dd class="col-sm-9">@Model.Grupo?.Nombre</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,57 @@
+@model IEnumerable<ControlEscolarApp.Models.Calificacion>
+
+@{
+    ViewData["Title"] = "Calificaciones";
+}
+
+<h1>Calificaciones</h1>
+
+<p>
+    @if (Context.Session.GetString("Rol") == "Admin" || Context.Session.GetString("Rol") == "Profesor")
+    {
+        <a asp-action="Create" class="btn btn-primary">Capturar Calificación</a>
+    }
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Boleta</th>
+            <th>Alumno</th>
+            <th>Materia</th>
+            <th>Grupo</th>
+            <th>Profesor</th>
+            <th>Parcial 1</th>
+            <th>Parcial 2</th>
+            <th>Parcial 3</th>
+            <th>Final</th>
+            @if (Context.Session.GetString("Rol") == "Admin")
+            {
+                <th>Acciones</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var calificacion in Model)
+        {
+            <tr>
+                <td>@calificacion.Alumno?.NumeroBoleta</td>
+                <td>@calificacion.Alumno?.Nombre @calificacion.Alumno?.ApellidoPaterno</td>
+                <td>@calificacion.Materia?.Nombre</td>
+                <td>@calificacion.Grupo?.Nombre</td>
+                <td>@calificacion.Profesor?.Nombre @calificacion.Profesor?.ApellidoPaterno</td>
+                <td>@calificacion.Parcial1</td>
+                <td>@calificacion.Parcial2</td>
+                <td>@calificacion.Parcial3</td>
+                <td>@calificacion.Final</td>
+                <td>
+                    @if (Context.Session.GetString("Rol") == "Admin")
+                    {
+                        <a asp-action="Edit" asp-route-id="@calificacion.Id" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@calificacion.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

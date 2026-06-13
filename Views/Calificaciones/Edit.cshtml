@@ -1,0 +1,59 @@
+@model ControlEscolarApp.Models.Calificacion
+
+@{
+    ViewData["Title"] = "Editar Calificación";
+}
+
+<h1>Editar Calificación</h1>
+
+<div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="AlumnoId" class="form-label"></label>
+        <select asp-for="AlumnoId" class="form-control" asp-items="ViewBag.Alumnos">
+            <option value="">Seleccione un alumno</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MateriaId" class="form-label"></label>
+        <select asp-for="MateriaId" class="form-control" asp-items="ViewBag.Materias">
+            <option value="">Seleccione una materia</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GrupoId" class="form-label"></label>
+        <select asp-for="GrupoId" class="form-control" asp-items="ViewBag.Grupos">
+            <option value="">Seleccione un grupo</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ProfesorId" class="form-label"></label>
+        <select asp-for="ProfesorId" class="form-control" asp-items="ViewBag.Profesores">
+            <option value="">Seleccione un profesor</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Parcial1" class="form-label"></label>
+        <input asp-for="Parcial1" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Parcial2" class="form-label"></label>
+        <input asp-for="Parcial2" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Parcial3" class="form-label"></label>
+        <input asp-for="Parcial3" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar cambios</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>
