@@ -41,6 +41,8 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
+    context.Database.Migrate();
+
     if (!context.Usuarios.Any())
     {
         context.Usuarios.Add(new Usuario
